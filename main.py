@@ -22,11 +22,11 @@ def read_df(path):
     df = pd.read_csv(path, on_bad_lines='skip', low_memory=False)
     return df
 
-path_pdt_params = r"C:\Users\ssgro\OneDrive\Documents\CleanData\1.PDT_parameter.csv"
-path_qc_product = r"C:\Users\ssgro\OneDrive\Documents\CleanData\2.PDT_QC_product.csv"
-path_feed_speed = r"C:\Users\ssgro\OneDrive\Documents\CleanData\3.FeedRawMaterial_Speed.csv"
-path_feed_material = r"C:\Users\ssgro\OneDrive\Documents\CleanData\4.FeedRawMaterial_Quality_Data.csv"
-path_pdt_form = r"C:\Users\ssgro\OneDrive\Documents\CleanData\5.Production cleanOnlyPDT.csv"
+path_pdt_params = r".\1.PDT_parameter.csv"
+path_qc_product = r".\2.PDT_QC_product.csv"
+# path_feed_speed = r".\3.FeedRawMaterial_Speed.csv"
+# path_feed_material = r".\4.FeedRawMaterial_Quality_Data.csv"
+# path_pdt_form = r"C:\Users\ssgro\OneDrive\Documents\CleanData\5.Production cleanOnlyPDT.csv"
 
 # print (read_df(path_qc_product).head(17))
 
@@ -34,7 +34,8 @@ def reshape(df):
     return 
 
 def main():
-    read_df(path_pdt_params)
+    df = read_df(path_pdt_params)
+    print(df)
 
 if __name__ == '__main__':
     main()
