@@ -30,7 +30,8 @@ def clean(path):
     df = read_df(path)
     df = reshape(df,index_df_pdt,columns_df_pdt,values_df_pdt)
     df = drop_column(df,columns_drop_pdt)
-    print(df)
+    return df
 
 if __name__ == '__main__':
-    clean(path_pdt_params)
+    print(clean(path_pdt_params))
+  
