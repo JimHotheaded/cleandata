@@ -18,24 +18,26 @@ import path
 # df_pdt_params()
 # df_pdt_qc_product()
 
-def read_df(path):
-    df = pd.read_csv(path, on_bad_lines='skip', low_memory=False)
-    return df
-
 path_pdt_params = r".\1.PDT_parameter.csv"
 path_qc_product = r".\2.PDT_QC_product.csv"
 # path_feed_speed = r".\3.FeedRawMaterial_Speed.csv"
 # path_feed_material = r".\4.FeedRawMaterial_Quality_Data.csv"
-# path_pdt_form = r"C:\Users\ssgro\OneDrive\Documents\CleanData\5.Production cleanOnlyPDT.csv"
+# path_pdt_form = r".\5.Production cleanOnlyPDT.csv"
 
-# print (read_df(path_qc_product).head(17))
+def read_df(path):
+    df = pd.read_csv(path, on_bad_lines='skip', low_memory=False)
+    return df
 
 def reshape(df):
-    return 
+    df_pivot = df.pivot_table(index='DateAndTime',columns='TagName',values='Val')
+    columns_drop_pdt = [r'Ballmill\Bag_Filter_Pressure']
+    df_pdt_params_clean = df_pivot.drop(columns=columns_drop_pdt)
+    return df_pdt_params_clean
 
-def main():
-    df = read_df(path_pdt_params)
+def main(path):
+    df = read_df(path)
+    df = reshape(df)
     print(df)
 
 if __name__ == '__main__':
-    main()
+    main(path_pdt_params)
