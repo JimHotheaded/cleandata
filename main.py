@@ -36,9 +36,9 @@ def clean(path):
     df = read_df(path)
     df = reshape(df,index_df_pdt,columns_df_pdt,values_df_pdt)
     df = drop_column(df,columns_drop_pdt)
-    # export_excel(df)
+    export_excel(df)
     return df
 
 if __name__ == '__main__':
-    print(clean(path_pdt_params))
+    clean(path_pdt_params)
     
