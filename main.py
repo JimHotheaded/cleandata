@@ -26,12 +26,19 @@ def drop_column(df,columns):
     df = df.drop(columns=columns)
     return df
 
+def export_excel(df):
+    file_path = r".\Output.csv"
+    export = df.to_csv(file_path)
+    print(f"DataFrame has been saved to {file_path}")
+    return export
+
 def clean(path):
     df = read_df(path)
     df = reshape(df,index_df_pdt,columns_df_pdt,values_df_pdt)
     df = drop_column(df,columns_drop_pdt)
+    # export_excel(df)
     return df
 
 if __name__ == '__main__':
     print(clean(path_pdt_params))
-  
+    
