@@ -32,13 +32,22 @@ def export_excel(df):
     print(f"DataFrame has been saved to {file_path}")
     return export
 
-def clean(path):
-    df = read_df(path)
-    df = reshape(df,index_df_pdt,columns_df_pdt,values_df_pdt)
-    df = drop_column(df,columns_drop_pdt)
-    export_excel(df)
+tolerance = pd.Timedelta(minutes=10)
+
+def join_df(df1,df2,left_index,right_index,tolerance,direction):
+    df = pd.merge_asof(df1,df2,left_index=left_index, right_index=right_index, tolerance=tolerance, direction=direction)
     return df
 
+def main():
+    df1 = read_df(path_pdt_params)
+    df2 = read_df(path_qc_product)
+    df1 = reshape(df1,index_df_pdt,columns_df_pdt,values_df_pdt)
+    df1 = drop_column(df1,columns_drop_pdt)
+    # df = join_df(df1,df2,True,True,tolerance,'nearest')
+    # export_excel(df)
+    print(df1.dtypes)
+
+# main
 if __name__ == '__main__':
-    clean(path_pdt_params)
+    main()
     
